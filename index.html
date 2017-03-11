@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Timer</title>
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" integrity="sha384-L/tgI3wSsbb3f/nW9V6Yqlaw3Gj7mpE56LWrhew/c8MIhAYWZ/FNirA64AVkB5pI" crossorigin="anonymous">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+
+	<!-- Jumbotron -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="text-center">Train App</h1>
+			<p class="text-center">Contents ...</p>
+		</div>
+	</div>
+
+	<!-- Current Train Schedule Table -->
+	<div class="panel panel-default">
+
+	  <div class="panel-heading">
+
+	    <h3 class="panel-title">Current Train Schedule</h3>
+
+	  </div>
+
+	  <div class="panel-body">
+
+	    <table class="table table-striped" id="train-table">
+			<tr>
+				<th>Train Name</th>
+				<th>Destination</th>
+				<th>Frequency (min)</th>
+				<th>Next Arrival</th>
+				<th>Minutes Away</th>
+			</tr>
+		</table>
+
+	  </div>
+
+	</div>
+	
+	<!-- Train Submission Form -->
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Add Train</h3>
+	  </div>
+
+	  <div class="panel-body">
+
+	    <form>
+		  <div class="form-group">
+		    <label for="train-name-input">Train Name</label>
+		    <input type="text" class="form-control" id="train-name-input" placeholder="Train Name">
+		  </div>
+		  <div class="form-group">
+		    <label for="destination-input">Destinaton</label>
+		    <input type="text" class="form-control" id="destination-input" placeholder="Destination">
+		  </div>
+		  <div class="form-group">
+		    <label for="first-time-input">First Train Time (HH:mm - military time)</label>
+		    <input type="text" class="form-control" id="first-time-input" placeholder="First Train Time">
+		  </div>
+		  <div class="form-group">
+		    <label for="frequency-input">Frequency (min)</label>
+		    <input type="text" class="form-control" id="frequency-input" placeholder="Frequency">
+		  </div>
+		  <button type="submit" class="btn btn-default" id="train-submit">Submit</button>
+		</form>
+
+	  </div>
+
+	</div>
+
+
+
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</html>
