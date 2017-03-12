@@ -1,21 +1,8 @@
 //------------------------------------------------------------------------------------------------------------------------------------------------------
 // GLOBAL VARIABLES
 //------------------------------------------------------------------------------------------------------------------------------------------------------
+
 var counter = 0
-
-
-
-
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-// FUNCTIONS
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------
 // APP FLOW
@@ -82,15 +69,29 @@ database.ref().on('child_added', function(childSnapshot) {
 	trainDestinationTd.html(childSnapshot.val().destination);
 	$("#train-row-" + counter).append(trainDestinationTd);
 
+	// Moment.js Logic
+	var firstTimeConverted = moment(childSnapshot.val().time, "hh:mm").subtract(1, "years");
+    var currentTime = moment();
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    var tRemainder = diffTime % childSnapshot.val().frequency;
+    var tMinutesTillTrain = childSnapshot.val().frequency - tRemainder; 
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    var nextTrainFormat = moment(nextTrain).format("hh:mm")
+
 	// Creates a td for train frequency and appends to the data table
 	var trainFrequencyTd = $("<td>", {id: "train-frequency-td"});
 	trainFrequencyTd.html(childSnapshot.val().frequency);
 	$("#train-row-" + counter).append(trainFrequencyTd);
 
-	// Creates a td for train time and appends to the data table
-	var trainTimeTd = $("<td>", {id: "train-time-td"});
-	trainTimeTd.html(childSnapshot.val().time);
-	$("#train-row-" + counter).append(trainTimeTd);
+	// Creates a td for next train time and appends to the data table
+	var nextTrainTd = $("<td>", {id: "next-train-td"});
+	nextTrainTd.text(nextTrainFormat);
+	$("#train-row-" + counter).append(nextTrainTd);
+
+	// Creates a td for minutes away and appends to the data table
+	var minutesAwayTd = $("<td>", {id: "minutes-away-td"});
+	minutesAwayTd.text(tMinutesTillTrain);
+	$("#train-row-" + counter).append(minutesAwayTd);
 
 	counter++;
 
